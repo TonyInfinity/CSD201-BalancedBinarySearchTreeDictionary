@@ -17,27 +17,37 @@ public class BBST {
         return root == null;
     }
 
-    public static void insert(Word el) {
+    public static boolean insert(Word el) {
         Node<Word> p = new Node(el);
+        //check tree is empty or not
         if (isEmpty()) {
             root = p;
         } else {
+        //traverse tree
             Node<Word> tmp = root;
-            Node<Word> pre = null;
+            Node<Word> previous = null;
             while (tmp != null) {
-                pre = tmp;
-                if (el.compareTo(tmp.data) == 1) {
+                previous = tmp;
+                //if greater -> right
+                
+                if (el.compareTo(tmp.data) == 0){
+                    return false;
+                }
+                
+                else if (el.compareTo(tmp.data) > 0) {
                     tmp = tmp.right;
                 } else {
+                //if smaller < left
                     tmp = tmp.left;
                 }
             }
-            if (el.compareTo(pre.data) == 1) {
-                pre.right = p;
+            if (el.compareTo(previous.data) > 0) {
+                previous.right = p;
             } else {
-                pre.left = p;
+                previous.left = p;
             }
         }
+        return true;
     }
 
     public static Node createBBST(Word array[]) {

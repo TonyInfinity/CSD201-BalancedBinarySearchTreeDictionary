@@ -14,6 +14,8 @@ public class Node<Word> {
     public Word data;
     public Node left;
     public Node right;
+    //add Node parent
+    public Node parent;
 
     public Node() {
     }
@@ -47,10 +49,20 @@ public class Node<Word> {
         this.right = right;
     }
 
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+    
+    
+    
     public Node getNode(Word data) {
         Node newNode = new Node();
         newNode.data = data;
-        newNode.left = newNode.right = null;
+        newNode.left = newNode.right = newNode.parent = null;
         return newNode;
     }
 
