@@ -18,7 +18,7 @@ public class Word implements Comparable<Word> {
         this.word = word;
         this.translation = translation;
     }
-    
+
     public String getWord() {
         return word;
     }
@@ -37,11 +37,11 @@ public class Word implements Comparable<Word> {
 
     @Override
     public int compareTo(Word w) {
-        return w.getWord().compareTo(getWord());
+        return this.word.compareTo(w.word);
     }
 
     @Override
     public String toString() {
-        return getWord() + " | " + getTranslation();
+        return getWord();
     }
 }

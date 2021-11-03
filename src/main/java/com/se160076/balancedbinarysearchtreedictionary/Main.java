@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String args[]) {
         ArrayList<Word> wl = new ArrayList<>();
-        
+
         while (true) {
             Manager.printMenu();
             int choice = Validator.validateMenuChoice(1, 6);
@@ -26,6 +26,7 @@ public class Main {
                     break;
 
                 case 2:
+                    Manager.addWord(wl);
                     break;
 
                 case 3:

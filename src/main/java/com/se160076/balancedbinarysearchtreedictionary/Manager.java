@@ -23,6 +23,7 @@ import java.util.StringTokenizer;
  */
 public class Manager {
 
+    private static Node<Word> root;
     private static final String fileName = "dictionary.txt";
 
     public final static void printMenu() {
@@ -41,13 +42,13 @@ public class Manager {
         Collections.sort(wl, new Comparator<Word>() {
             @Override
             public int compare(Word w1, Word w2) {
-                return w1.getWord().compareTo(w2.getWord());
+                return w1.compareTo(w2);
             }
         });
-        Word[] w = new Word[wl.size()];
-        w = wl.toArray(w);
-        Node r = BBST.createBBST(w);
-        BBST.inorderTraversal(r);
+        Word[] wa = new Word[wl.size()];
+        wa = wl.toArray(wa);
+        root = BBST.createBBST(wa);
+        BBST.inorderTraversal(root);
     }
 
     public final static void addWord(ArrayList<Word> wl) {
@@ -57,7 +58,20 @@ public class Manager {
         word = Validator.validateString();
         System.out.println("Enter Its Translation: ");
         translation = Validator.validateString();
-        
+        BBST.insert(root, new Word(word, translation));
+        wl.clear();
+        BBST.inorderTraversalStore(root, wl);
+        Collections.sort(wl, new Comparator<Word>() {
+            @Override
+            public int compare(Word w1, Word w2) {
+                return w1.compareTo(w2);
+            }
+        });
+        Word[] wa = new Word[wl.size()];
+        wa = wl.toArray(wa);
+        root = BBST.createBBST(wa);
+        System.out.println("After Rebuilt: ");
+        BBST.inorderTraversal(root);
     }
 
     public final static void readFile(ArrayList<Word> wl) {
