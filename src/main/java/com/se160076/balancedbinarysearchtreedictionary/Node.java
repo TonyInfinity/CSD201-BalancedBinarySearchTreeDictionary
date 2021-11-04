@@ -15,6 +15,7 @@ public class Node<Word> {
     public Node left;
     public Node right;
     //add Node parent
+
     public Node parent;
 
     public Node() {
@@ -56,7 +57,6 @@ public class Node<Word> {
     public void setParent(Node parent) {
         this.parent = parent;
     }
-    
     
     
     public Node getNode(Word data) {

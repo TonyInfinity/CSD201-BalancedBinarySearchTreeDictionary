@@ -19,6 +19,11 @@ public class Word implements Comparable<Word> {
         this.translation = translation;
     }
     
+    public Word(String word) {
+        this.word = word;
+    }
+
+
     public String getWord() {
         return word;
     }

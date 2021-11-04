@@ -32,11 +32,11 @@ public class Main {
                     break;
 
                 case 4:
+                    Manager.searchAWord();
                     break;
-
                 case 5:
+                    Manager.printPathbetweenTwoNodes();
                     break;
-
                 case 6:
                     System.exit(0);
                     break;
