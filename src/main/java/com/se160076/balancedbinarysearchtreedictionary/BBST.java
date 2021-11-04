@@ -96,17 +96,16 @@ public class BBST {
     }
     
     public static Node<Word> search(String english){
+        if(isEmpty()){
+            System.out.println("The list is empty!");
+            return null;
+        }
         Word searchWord = new Word(english);
         return search(searchWord);
     }
     
     public static Node<Word> search(Word data){
-        
-        if(isEmpty()){
-            System.out.println("The list is empty!");
-            return null;
-        }
-        
+          
         Node<Word> traverse = root;
         
         while(traverse != null){
@@ -135,14 +134,14 @@ public class BBST {
             return true;
         }
         
-        //has left?
-        if(node.left != null){
+        //has left and smaller value -> left
+        if(node.left != null && ((Word)node.data).compareTo(findWord) < 0){
            if(getPath(node.left, arr, findWord)){
                return true;
            }
         }
-        //has right?
-        if(node.right != null){
+        //has right right and bigger value -> right
+        if(node.right != null && ((Word)node.data).compareTo(findWord) > 0){
            if(getPath(node.right, arr, findWord)){
                return true;
            }
