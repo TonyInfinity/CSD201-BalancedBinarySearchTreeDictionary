@@ -58,7 +58,7 @@ public class Manager {
         word = Validator.validateString();
         System.out.println("Enter Its Translation: ");
         translation = Validator.validateString();
-        BBST.insert(root, new Word(word, translation));
+        root = BBST.insert(root, new Word(word, translation));
         wl.clear();
         BBST.inorderTraversalStore(root, wl);
         Collections.sort(wl, new Comparator<Word>() {
@@ -75,7 +75,23 @@ public class Manager {
     }
 
     public static void deleteWord(ArrayList<Word> wl) {
-
+        String word;
+        System.out.println("Enter Word To Delete: ");
+        word = Validator.validateString();
+        root = BBST.deleteNode(root, new Word(word));
+        wl.clear();
+        BBST.inorderTraversalStore(root, wl);
+        Collections.sort(wl, new Comparator<Word>() {
+            @Override
+            public int compare(Word w1, Word w2) {
+                return w1.compareTo(w2);
+            }
+        });
+        Word[] wa = new Word[wl.size()];
+        wa = wl.toArray(wa);
+        root = BBST.createBBST(wa);
+        System.out.println("After Rebuilt: ");
+        BBST.inorderTraversal(root);
     }
 
     public static void searchAWord() {

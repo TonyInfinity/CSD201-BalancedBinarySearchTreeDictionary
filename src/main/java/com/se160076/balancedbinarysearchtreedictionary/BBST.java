@@ -24,17 +24,60 @@ public class BBST {
             return new Node<>(key);
         }
 
-        if (key.compareTo(root.getData()) == 0) {
-            return root;
+        if (key.compareTo(root.getData()) < 0) {
+            root.left = insert(root.left, key);
+        } else if (key.compareTo(root.getData()) > 0) {
+            root.right = insert(root.right, key);
+        } else {
+            System.out.println("Do You Wish To Update This Word's Translation?");
+            boolean choice = Validator.checkInputYN();
+            if (choice) {
+                root.setData(new Word(key.getWord(), key.getTranslation()));
+            }
+        }
+        return root;
+    }
+
+    public static Node<Word> deleteNode(Node<Word> root, Word key) {
+        if (root == null) {
+            return null;
         }
 
         if (key.compareTo(root.getData()) < 0) {
-            root.left = insert(root.left, key);
+            root.left = deleteNode(root.left, key);
+        } else if (key.compareTo(root.getData()) > 0) {
+            root.right = deleteNode(root.right, key);
         } else {
-            root.right = insert(root.right, key);
-        }
+            // Case 1: node to be deleted has no children (it is a leaf node)
+            if (root.left == null && root.right == null) {
+                // update root to null
+                return null;
+            } // Case 2: node to be deleted has two children
+            else if (root.left != null && root.right != null) {
+                // find its inorder predecessor node
+                Node<Word> predecessor = findMaximumKey(root.left);
 
+                // copy value of the predecessor to the current node
+                root.data = predecessor.data;
+
+                // recursively delete the predecessor. Note that the
+                // predecessor will have at most one child (left child)
+                root.left = deleteNode(root.left, predecessor.data);
+            } // Case 3: node to be deleted has only one child
+            else {
+                // choose a child node
+                Node<Word> child = (root.left != null) ? root.left : root.right;
+                root = child;
+            }
+        }
         return root;
+    }
+
+    public static Node<Word> findMaximumKey(Node<Word> ptr) {
+        while (ptr.right != null) {
+            ptr = ptr.right;
+        }
+        return ptr;
     }
 
     public static Node createBBST(Word array[]) {

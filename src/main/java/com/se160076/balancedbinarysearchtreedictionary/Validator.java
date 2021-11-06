@@ -42,4 +42,18 @@ public class Validator {
             }
         }
     }
+
+    public static boolean checkInputYN() {
+        while (true) {
+            String result = validateString();
+            if (result.equalsIgnoreCase("Y")) {
+                return true;
+            } else if (result.equalsIgnoreCase("N")) {
+                return false;
+            } else {
+                System.out.println("\nInput Must Be Either Y/y Or N/n.");
+                System.out.println("Enter: \n");
+            }
+        }
+    }
 }

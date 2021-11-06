@@ -46,6 +46,6 @@ public class Word implements Comparable<Word> {
 
     @Override
     public String toString() {
-        return getWord();
+        return this.word + ": " + this.translation;
     }
 }
