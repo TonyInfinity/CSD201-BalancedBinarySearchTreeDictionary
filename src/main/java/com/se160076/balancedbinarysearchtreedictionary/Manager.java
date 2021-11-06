@@ -74,6 +74,36 @@ public class Manager {
         BBST.inorderTraversal(root);
     }
 
+    public static void deleteWord(ArrayList<Word> wl) {
+
+    }
+
+    public static void searchAWord() {
+        String translation;
+        //input the word need to search
+        System.out.print("Please input the word you want to search: ");
+        String inputWord = Validator.validateString();
+        //find the word
+        Node<Word> tmp = BBST.search(inputWord);
+        //check if the word exists
+        if (tmp == null) {
+            System.out.println("This word has not existed in the dictionary");
+            return;
+        }
+        //show for user
+        translation = tmp.getData().getTranslation();
+        System.out.println(inputWord + ": " + translation);
+    }
+
+    public static void printPathbetweenTwoNodes() {
+        System.out.println("Please input the first word");
+        String firstWord = Validator.validateString();
+        System.out.println("Please input the second word");
+        String secondWord = Validator.validateString();
+
+        BBST.printPathBetweenNodes(firstWord, secondWord);
+    }
+
     public final static void readFile(ArrayList<Word> wl) {
         Path path = Paths.get(fileName);
         try ( BufferedReader reader = Files.newBufferedReader(path)) {

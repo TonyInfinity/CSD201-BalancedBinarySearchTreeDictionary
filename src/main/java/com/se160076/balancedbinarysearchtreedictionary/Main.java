@@ -30,12 +30,15 @@ public class Main {
                     break;
 
                 case 3:
+                    Manager.deleteWord(wl);
                     break;
 
                 case 4:
+                    Manager.searchAWord();
                     break;
 
                 case 5:
+                    Manager.printPathbetweenTwoNodes();
                     break;
 
                 case 6:

@@ -13,6 +13,10 @@ public class Word implements Comparable<Word> {
 
     private String word;
     private String translation;
+    
+    public Word(String word) {
+        this.word = word;
+    }
 
     public Word(String word, String translation) {
         this.word = word;
