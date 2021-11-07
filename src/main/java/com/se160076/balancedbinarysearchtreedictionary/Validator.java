@@ -34,7 +34,7 @@ public class Validator {
     public static String validateString() {
         while (true) {
             String result = sc.nextLine().trim();
-            if (result.isEmpty() || result.isBlank()) {
+            if (result.isEmpty() || result.length() == 0) {
                 System.out.println("\nInput Must Not Be Empty.");
                 System.out.println("Enter: \n");
             } else {

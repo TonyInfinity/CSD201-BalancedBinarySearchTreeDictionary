@@ -34,11 +34,11 @@ public class Main {
                     break;
 
                 case 4:
-                    //Manager.searchAWord();
+                    Manager.search();
                     break;
 
                 case 5:
-                    //Manager.printPathbetweenTwoNodes();
+                    Manager.printPathbetweenTwoNodes();
                     break;
 
                 case 6:

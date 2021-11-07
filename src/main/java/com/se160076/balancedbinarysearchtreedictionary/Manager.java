@@ -92,15 +92,17 @@ public class Manager {
         root = BBST.createBBST(wa);
         System.out.println("After Rebuilt: ");
         BBST.inorderTraversal(root);
+
     }
 
-    public static void searchAWord() {
+    public static void search() {
         String translation;
         //input the word need to search
-        System.out.print("Please input the word you want to search: ");
-        String inputWord = Validator.validateString();
+        System.out.println("Please input the word you want to search: ");
+        String inputWord;
+        inputWord = Validator.validateString();
         //find the word
-        Node<Word> tmp = BBST.search(inputWord);
+        Node<Word> tmp = BBST.search(inputWord, root);
         //check if the word exists
         if (tmp == null) {
             System.out.println("This word has not existed in the dictionary");
@@ -117,12 +119,12 @@ public class Manager {
         System.out.println("Please input the second word");
         String secondWord = Validator.validateString();
 
-        BBST.printPathBetweenNodes(firstWord, secondWord);
+        BBST.printPathBetweenNodes(firstWord, secondWord, root);
     }
 
     public final static void readFile(ArrayList<Word> wl) {
         Path path = Paths.get(fileName);
-        try ( BufferedReader reader = Files.newBufferedReader(path)) {
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(line, "|");
