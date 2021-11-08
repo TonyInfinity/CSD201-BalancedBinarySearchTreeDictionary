@@ -27,14 +27,14 @@ public class Manager {
     private static final String fileName = "dictionary.txt";
 
     public final static void printMenu() {
-        System.out.println("\n|------------------------------------- VACCINE MANAGEMENT -------------------------------------|");
-        System.out.println("| 1. Load And Build BBST.                                                                      |");
-        System.out.println("| 2. Add A Word.                                                                               |");
-        System.out.println("| 3. Delete A Word.                                                                            |");
-        System.out.println("| 4. Search For A Word.                                                                        |");
-        System.out.println("| 5. Print Path Between 2 Nodes.                                                               |");
-        System.out.println("| 6. Quit.                                                                                     |");
-        System.out.println("|----------------------------------------------------------------------------------------------|\n");
+        System.out.println("\n|----------------------------------- BALANCED BST DICTIONARY -----------------------------------|");
+        System.out.println("| 1. Load And Build BBST.                                                                       |");
+        System.out.println("| 2. Add A Word.                                                                                |");
+        System.out.println("| 3. Delete A Word.                                                                             |");
+        System.out.println("| 4. Search For A Word.                                                                         |");
+        System.out.println("| 5. Print Path Between 2 Nodes.                                                                |");
+        System.out.println("| 6. Quit.                                                                                      |");
+        System.out.println("|-----------------------------------------------------------------------------------------------|\n");
     }
 
     public final static void loadAndBuildBBST(ArrayList<Word> wl) {
@@ -47,7 +47,7 @@ public class Manager {
         });
         Word[] wa = new Word[wl.size()];
         wa = wl.toArray(wa);
-        root = BBST.createBBST(wa);
+        root = BBST.balance(wa);
         BBST.inorderTraversal(root);
     }
 
@@ -55,57 +55,32 @@ public class Manager {
         String word;
         String translation;
         System.out.println("Enter Word To Add: ");
-        word = Validator.validateString();
+        word = Validator.validateWord();
         System.out.println("Enter Its Translation: ");
         translation = Validator.validateString();
         root = BBST.insert(root, new Word(word, translation));
-        wl.clear();
-        BBST.inorderTraversalStore(root, wl);
-        Collections.sort(wl, new Comparator<Word>() {
-            @Override
-            public int compare(Word w1, Word w2) {
-                return w1.compareTo(w2);
-            }
-        });
-        Word[] wa = new Word[wl.size()];
-        wa = wl.toArray(wa);
-        root = BBST.createBBST(wa);
-        System.out.println("After Rebuilt: ");
         BBST.inorderTraversal(root);
     }
 
     public static void deleteWord(ArrayList<Word> wl) {
         String word;
         System.out.println("Enter Word To Delete: ");
-        word = Validator.validateString();
+        word = Validator.validateWord();
         root = BBST.deleteNode(root, new Word(word));
-        wl.clear();
-        BBST.inorderTraversalStore(root, wl);
-        Collections.sort(wl, new Comparator<Word>() {
-            @Override
-            public int compare(Word w1, Word w2) {
-                return w1.compareTo(w2);
-            }
-        });
-        Word[] wa = new Word[wl.size()];
-        wa = wl.toArray(wa);
-        root = BBST.createBBST(wa);
-        System.out.println("After Rebuilt: ");
         BBST.inorderTraversal(root);
-
     }
 
     public static void search() {
         String translation;
         //input the word need to search
-        System.out.println("Please input the word you want to search: ");
+        System.out.println("Enter Word To Search: ");
         String inputWord;
-        inputWord = Validator.validateString();
+        inputWord = Validator.validateWord();
         //find the word
         Node<Word> tmp = BBST.search(inputWord, root);
         //check if the word exists
         if (tmp == null) {
-            System.out.println("This word has not existed in the dictionary");
+            System.out.println("This Word Does Not Exist.");
             return;
         }
         //show for user
@@ -114,23 +89,26 @@ public class Manager {
     }
 
     public static void printPathbetweenTwoNodes() {
-        System.out.println("Please input the first word");
-        String firstWord = Validator.validateString();
-        System.out.println("Please input the second word");
-        String secondWord = Validator.validateString();
+        System.out.println("Enter First Word: ");
+        String firstWord = Validator.validateWord();
+        System.out.println("Enter Second Word: ");
+        String secondWord = Validator.validateWord();
 
         BBST.printPathBetweenNodes(firstWord, secondWord, root);
     }
 
     public final static void readFile(ArrayList<Word> wl) {
-        Path path = Paths.get(fileName);
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
+        String file = Validator.validateFileName(fileName);
+        Path path = Paths.get(file);
+        try ( BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(line, "|");
-                String word = st.nextToken();
-                String translation = st.nextToken();
-                wl.add(new Word(word, translation));
+                String word = st.nextToken().trim();
+                String translation = st.nextToken().trim();
+                if (Validator.validateWord(word)) {
+                    wl.add(new Word(word, translation));
+                }
             }
 
         } catch (IOException e) {

@@ -80,11 +80,11 @@ public class BBST {
         return ptr;
     }
 
-    public static Node createBBST(Word array[]) {
-        return createBBST(array, 0, array.length - 1);
+    public static Node balance(Word array[]) {
+        return balance(array, 0, array.length - 1);
     }
 
-    public static Node<Word> createBBST(Word array[], int start, int end) {
+    public static Node<Word> balance(Word array[], int start, int end) {
         if (array == null || array.length == 0 || start > end) {
             return null;
         }
@@ -92,8 +92,8 @@ public class BBST {
         int mid = (start + end) / 2;
         Node<Word> p = new Node(array[mid]);
 
-        p.setLeft(createBBST(array, start, mid - 1));
-        p.setRight(createBBST(array, mid + 1, end));
+        p.setLeft(balance(array, start, mid - 1));
+        p.setRight(balance(array, mid + 1, end));
 
         return p;
     }
@@ -186,15 +186,15 @@ public class BBST {
 
         //check the node is exist!
         if (path1.isEmpty() && path2.isEmpty()) {
-            System.out.println("Both word " + w1.getWord() + " and " + w2.getWord()
-                    + " is not existed in the dictionary !");
+            System.out.println("Both " + w1.getWord() + " And " + w2.getWord()
+                    + " Does Not Exist.");
             return;
         }
         if (path1.isEmpty()) {
-            System.out.println("The word " + w1.getWord() + " is not existed in the dictionary!");
+            System.out.println("The Word " + w1.getWord() + " Does Not Exist.");
             return;
         } else if (path2.isEmpty()) {
-            System.out.println("The word " + w2.getWord() + " is not existed in the dictionary!");
+            System.out.println("The Word " + w2.getWord() + " Does Not Exist.");
             return;
         }
 
@@ -223,7 +223,7 @@ public class BBST {
             }
         }
 
-        System.out.println("The path between two node is: ");
+        System.out.println("The Path Between The Two Nodes Is: ");
         //print the required path
         //traverse from reverse path1 -> unreverse path2
         for (i = path1.size() - 1; i > intersection; i--) {

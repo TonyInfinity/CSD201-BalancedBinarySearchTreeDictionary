@@ -6,6 +6,8 @@
 package com.se160076.balancedbinarysearchtreedictionary;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -43,6 +45,32 @@ public class Validator {
         }
     }
 
+    public static String validateWord() {
+        while (true) {
+            String result = validateString();
+            Pattern pattern = Pattern.compile("[a-zA-Z ]*");
+            Matcher matcher = pattern.matcher(result);
+            if (!matcher.matches()) {
+                System.out.println("\nId Must Be Alphabetical.");
+                System.out.println("Enter: \n");
+            } else {
+                return result;
+            }
+        }
+    }
+
+    public static boolean validateWord(String result) {
+        while (true) {
+            Pattern pattern = Pattern.compile("[a-zA-Z ]*");
+            Matcher matcher = pattern.matcher(result);
+            if (!matcher.matches()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
     public static boolean checkInputYN() {
         while (true) {
             String result = validateString();
@@ -53,6 +81,25 @@ public class Validator {
             } else {
                 System.out.println("\nInput Must Be Either Y/y Or N/n.");
                 System.out.println("Enter: \n");
+            }
+        }
+    }
+
+    public static String validateFileName(String fileName) {
+        while (true) {
+            String result = fileName.trim();
+            Pattern pattern = Pattern.compile("^.*\\.(txt|TXT)$");
+            Matcher matcher = pattern.matcher(result);
+            if (result.isEmpty()) {
+                System.out.println("\nFile Name Must Not Be Empty.");
+                System.out.println("Enter: \n");
+            } else {
+                if (!matcher.matches()) {
+                    System.out.println("\nFile Name Must End With .txt.");
+                    System.out.println("Enter: \n");
+                } else {
+                    return result;
+                }
             }
         }
     }
