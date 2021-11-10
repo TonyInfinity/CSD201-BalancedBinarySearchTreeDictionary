@@ -48,24 +48,13 @@ public class BBST {
         } else if (key.compareTo(root.getData()) > 0) {
             root.right = deleteNode(root.right, key);
         } else {
-            // Case 1: node to be deleted has no children (it is a leaf node)
             if (root.left == null && root.right == null) {
-                // update root to null
                 return null;
-            } // Case 2: node to be deleted has two children
-            else if (root.left != null && root.right != null) {
-                // find its inorder predecessor node
+            } else if (root.left != null && root.right != null) {
                 Node<Word> predecessor = findMaximumKey(root.left);
-
-                // copy value of the predecessor to the current node
                 root.data = predecessor.data;
-
-                // recursively delete the predecessor. Note that the
-                // predecessor will have at most one child (left child)
                 root.left = deleteNode(root.left, predecessor.data);
-            } // Case 3: node to be deleted has only one child
-            else {
-                // choose a child node
+            } else {
                 Node<Word> child = (root.left != null) ? root.left : root.right;
                 root = child;
             }
@@ -155,8 +144,17 @@ public class BBST {
         }
 
         //check left and right
-        if (getPath(node.left, arr, findWord) || getPath(node.right, arr, findWord)) {
-            return true;
+        //if (getPath(node.left, arr, findWord) || getPath(node.right, arr, findWord)) {
+        //    return true;
+        //}
+        if (findWord.compareTo(node.data) > 0) {
+            if (getPath(node.right, arr, findWord)) {
+                return true;
+            }
+        } else if (findWord.compareTo(node.data) < 0) {
+            if (getPath(node.left, arr, findWord)) {
+                return true;
+            }
         }
 
         //if can't find the node in left or right

@@ -5,6 +5,7 @@
  */
 package com.se160076.balancedbinarysearchtreedictionary;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -102,5 +103,14 @@ public class Validator {
                 }
             }
         }
+    }
+
+    public static boolean wordExists(ArrayList<Word> wl, String id) {
+        for (Word i : wl) {
+            if (i.getWord().equalsIgnoreCase(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

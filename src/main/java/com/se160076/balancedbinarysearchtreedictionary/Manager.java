@@ -59,6 +59,17 @@ public class Manager {
         System.out.println("Enter Its Translation: ");
         translation = Validator.validateString();
         root = BBST.insert(root, new Word(word, translation));
+        wl.clear();
+        BBST.inorderTraversalStore(root, wl);
+        Collections.sort(wl, new Comparator<Word>() {
+            @Override
+            public int compare(Word w1, Word w2) {
+                return w1.compareTo(w2);
+            }
+        });
+        Word[] wa = new Word[wl.size()];
+        wa = wl.toArray(wa);
+        root = BBST.balance(wa);
         BBST.inorderTraversal(root);
     }
 
@@ -67,6 +78,17 @@ public class Manager {
         System.out.println("Enter Word To Delete: ");
         word = Validator.validateWord();
         root = BBST.deleteNode(root, new Word(word));
+        wl.clear();
+        BBST.inorderTraversalStore(root, wl);
+        Collections.sort(wl, new Comparator<Word>() {
+            @Override
+            public int compare(Word w1, Word w2) {
+                return w1.compareTo(w2);
+            }
+        });
+        Word[] wa = new Word[wl.size()];
+        wa = wl.toArray(wa);
+        root = BBST.balance(wa);
         BBST.inorderTraversal(root);
     }
 
@@ -94,6 +116,10 @@ public class Manager {
         System.out.println("Enter Second Word: ");
         String secondWord = Validator.validateWord();
 
+        if (firstWord.equalsIgnoreCase(secondWord)) {
+            System.out.println("Two Words Must Be Different.");
+            return;
+        }
         BBST.printPathBetweenNodes(firstWord, secondWord, root);
     }
 
@@ -106,9 +132,13 @@ public class Manager {
                 StringTokenizer st = new StringTokenizer(line, "|");
                 String word = st.nextToken().trim();
                 String translation = st.nextToken().trim();
-                if (Validator.validateWord(word)) {
-                    wl.add(new Word(word, translation));
+                //for (Word w : wl) {
+                if (!Validator.wordExists(wl, word)) {
+                    if (Validator.validateWord(word)) {
+                        wl.add(new Word(word, translation));
+                    }
                 }
+                //}
             }
 
         } catch (IOException e) {

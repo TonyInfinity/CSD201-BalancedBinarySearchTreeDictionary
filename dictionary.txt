@@ -1,4 +1,50 @@
-measuring | đo lường, tiêu chuẩn
-electronics | Điện tử dân dụng
-c0de | lap trinh
-facility | nhà vệ sinh
+tell | noi
+think | nghĩ
+try | cố gắng
+turn | xoay
+use | sử dụng
+want | muốn
+will | sẽ
+work | công việc
+would | sẽ
+do | làm
+feel | cảm xúc
+find | tìm thấy
+become | trở thành
+begin | bắt đầu
+call | gọi
+can | có thể
+come | đến
+could | có thể
+may | có thể
+mean | bần tiện
+might | có thể
+move | di chuyển
+need | nhu cầu
+play | chơi
+put | đặt
+run | chạy
+say | Nói
+see | Thấy chưa
+seem | hình như
+should | Nên
+show | chỉ
+start | bắt đầu
+take | cầm lấy
+talk | nói chuyện
+ask | hỏi
+be | thì là ở
+get | hiểu được
+give | đưa cho
+go | đi
+have | có
+hear | Nghe
+help | Cứu giúp
+keep | giữ cho
+know | biết
+leave | rời bỏ
+let | cho phép
+like | như
+live | trực tiếp
+look | nhìn
+make | chế tạo
